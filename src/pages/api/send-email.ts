@@ -39,7 +39,7 @@ export default async function handler(
     },
   });
 
-  const companyEmail = process.env.COMPANY_EMAIL || "sales@unifi-online.my";
+  const companyEmail = process.env.COMPANY_EMAIL || "admin@unifi-my.online";
   const customerEmail = formData["user-email"] || formData["email"];
 
   // Prepare the email body

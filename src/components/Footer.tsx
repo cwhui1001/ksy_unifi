@@ -40,7 +40,7 @@ export default function Footer() {
             <ul className="space-y-4 text-sm">
               <li><Link href="/check-coverage/" className="text-blue-200 hover:text-white transition-colors">Check Coverage</Link></li>
               <li><Link href="/installation-guide/" className="text-blue-200 hover:text-white transition-colors">Installation Guide</Link></li>
-              <li><a href="mailto:sales@unifi-online.my" className="text-blue-200 hover:text-white transition-colors">Contact Us</a></li>
+              <li><a href="mailto:admin@unifi-my.online" className="text-blue-200 hover:text-white transition-colors">Contact Us</a></li>
             </ul>
           </div>
 
@@ -58,6 +58,8 @@ export default function Footer() {
         <div className="pt-8 border-t border-blue-800 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-blue-300">
           <div className="flex flex-col gap-2 text-center md:text-left">
             <p>Authorized Dealer for TM TECHNOLOGY SERVICES SDN. BHD | Independent Sales & Consultation</p>
+            <p>THE KSY ENTERPRISE 202203059028 (NS0266890-A)</p>
+            <p>REGISTERED ADDRESS: NO. 22A, JALAN 2/125, DESA PETALING, 57100 KUALA LUMPUR, WILAYAH PERSEKUTUAN</p> 
             <p>© 2026 | All Rights Reserved | All trademarks are the property of their respective owner.</p>
           </div>
         </div>

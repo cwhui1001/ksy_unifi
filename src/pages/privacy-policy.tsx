@@ -140,13 +140,13 @@ export default function PrivacyPolicy() {
               </p>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <a href="mailto:sales@unifi-online.my" className="group/item flex items-center gap-4 bg-gray-50 hover:bg-[#1800E7] p-6 rounded-2xl transition-all duration-300 border border-gray-100 hover:border-[#1800E7]">
-                  <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-[#1800E7] group-hover/item:scale-110 transition-transform shadow-sm">
-                    <Mail className="w-6 h-6" />
+                <a href="mailto:admin@unifi-my.online" className="group/item flex items-center gap-4 bg-gray-50 hover:bg-[#1800E7] p-6 rounded-2xl transition-all duration-300 border border-gray-100 hover:border-[#1800E7]">
+                  <div className="w-12 h-12 bg-[#1800E7]/10 rounded-xl flex items-center justify-center group-hover/item:bg-white/20 transition-colors">
+                    <Mail className="w-6 h-6 text-[#1800E7] group-hover/item:text-white transition-colors" />
                   </div>
                   <div>
-                    <div className="text-[10px] font-black uppercase text-gray-400 group-hover/item:text-blue-100 tracking-widest mb-1">Email Support</div>
-                    <div className="font-bold text-gray-900 group-hover/item:text-white transition-colors">sales@unifi-online.my</div>
+                    <div className="text-sm text-gray-500 group-hover/item:text-white/70 transition-colors uppercase font-black tracking-widest">Email Us</div>
+                    <div className="font-bold text-gray-900 group-hover/item:text-white transition-colors">admin@unifi-my.online</div>
                   </div>
                 </a>
                 

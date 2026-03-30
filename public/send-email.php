@@ -35,8 +35,8 @@ $formData = $data['formData'];
 $attachments = $data['attachments'] ?? [];
 
 // Configuration
-$companyEmail = "sales@unifi-online.my";
-$fromEmail = "sales@unifi-online.my"; 
+$companyEmail = "admin@unifi-my.online";
+$fromEmail = "admin@unifi-my.online"; 
 $customerEmail = $formData["user-email"] ?? $formData["email"] ?? "";
 $customerName = $formData["user-name"] ?? "Customer";
 
