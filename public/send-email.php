@@ -142,7 +142,7 @@ $htmlToCustomer = getEmailTemplate($formType, $customerGreeting, $customerIntro,
 
 // Prepare Clean Headers
 $boundary = "PHP-mixed-" . md5(time());
-$headers = "From: Unifi Distributor <$fromEmail>\r\n";
+$headers = "From: KSY-Unifi Online <$fromEmail>\r\n";
 $headers .= "Reply-To: " . ($validatedCustomerEmail ?: $fromEmail) . "\r\n";
 $headers .= "MIME-Version: 1.0\r\n";
 $headers .= "Date: " . date('r') . "\r\n";
@@ -177,7 +177,7 @@ $mailToCompany = mail($companyEmail, $subject, $body, $headers, "-f $fromEmail")
 
 // Send to customer
 if ($validatedCustomerEmail) {
-    $custHeaders = "From: Unifi Distributor <$fromEmail>\r\n";
+    $custHeaders = "From: Unifi Online <$fromEmail>\r\n";
     $custHeaders .= "Reply-To: $fromEmail\r\n";
     $custHeaders .= "MIME-Version: 1.0\r\n";
     $custHeaders .= "Date: " . date('r') . "\r\n";
