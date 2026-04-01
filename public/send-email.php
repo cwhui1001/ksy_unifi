@@ -146,7 +146,7 @@ $headers = "From: KSY-Unifi Online <$fromEmail>\r\n";
 $headers .= "Reply-To: " . ($validatedCustomerEmail ?: $fromEmail) . "\r\n";
 $headers .= "MIME-Version: 1.0\r\n";
 $headers .= "Date: " . date('r') . "\r\n";
-$headers .= "Message-ID: <" . uniqid() . "@unifi-online.my>\r\n";
+$headers .= "Message-ID: <" . uniqid() . "@unifi-my.online>\r\n";
 $headers .= "X-Mailer: PHP/" . phpversion() . "\r\n";
 
 if (empty($attachments)) {
@@ -181,7 +181,7 @@ if ($validatedCustomerEmail) {
     $custHeaders .= "Reply-To: $fromEmail\r\n";
     $custHeaders .= "MIME-Version: 1.0\r\n";
     $custHeaders .= "Date: " . date('r') . "\r\n";
-    $custHeaders .= "Message-ID: <" . uniqid() . "@unifi-online.my>\r\n";
+    $custHeaders .= "Message-ID: <" . uniqid() . "@unifi-my.online>\r\n";
     $custHeaders .= "X-Mailer: PHP/" . phpversion() . "\r\n";
     $custHeaders .= "Content-Type: text/html; charset=UTF-8\r\n";
     
