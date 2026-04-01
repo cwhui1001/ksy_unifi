@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
-import { User, Mail, Phone, Building2, MapPin, Search, ChevronRight, Hash, Layers, Home, Navigation, Globe, Send, Smartphone } from "lucide-react";
+import { User, Mail, Phone, Building2, MapPin, Search, ChevronRight, Hash, Layers, Home, Navigation, Globe, Send, Smartphone, Check } from "lucide-react";
 
 export default function CoverageForm() {
   const [formData, setFormData] = useState({
@@ -16,18 +16,27 @@ export default function CoverageForm() {
     "city": "",
     "telco": "No",
     "postcode": "",
+    "accept1": false,
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    const { name, value, type } = e.target;
+    if (type === "checkbox") {
+      setFormData((prev) => ({ ...prev, [name]: (e.target as HTMLInputElement).checked }));
+    } else {
+      setFormData((prev) => ({ ...prev, [name]: value }));
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!formData.accept1) {
+      alert("Please accept the terms and conditions.");
+      return;
+    }
     setIsSubmitting(true);
     
     try {
@@ -355,9 +364,31 @@ export default function CoverageForm() {
               </div>
             </div>
 
-            
+            {/* Section 3: Terms */}
+            <section className="bg-gray-50/80 rounded-3xl p-6 md:p-10 border border-gray-100 mb-8">
+              <label className="flex items-start gap-4 cursor-pointer group">
+                <div className="relative mt-1">
+                  <input 
+                    type="checkbox" 
+                    name="accept1" 
+                    className="peer hidden" 
+                    checked={formData.accept1}
+                    onChange={handleInputChange}
+                    required
+                  />
+                  <div className="w-6 h-6 border-2 border-gray-300 rounded-lg bg-white peer-checked:bg-[#1800E7] peer-checked:border-[#1800E7] transition-all flex items-center justify-center group-hover:border-[#1800E7] shadow-sm">
+                    {formData.accept1 && (
+                      <Check className="w-4 h-4 text-white stroke-[4]" />
+                    )}
+                  </div>
+                </div>
+                <span className="text-gray-700 font-bold select-none leading-relaxed">
+                  I have read, understood and agree to be bound by the <Link href="/tnc-and-faq/tnc/home" className="text-[#1800E7] hover:underline decoration-2 underline-offset-4">Terms & Conditions</Link> accompanying the unifi coverage check.
+                </span>
+              </label>
+            </section>
 
-            <div className="pt-8">
+            <div className="pt-4">
               <button
                 type="submit"
                 disabled={isSubmitting}

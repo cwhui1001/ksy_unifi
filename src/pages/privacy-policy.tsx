@@ -150,13 +150,13 @@ export default function PrivacyPolicy() {
                   </div>
                 </a>
                 
-                <a href="https://wa.me/601133383836" target="_blank" rel="noopener noreferrer" className="group/item flex items-center gap-4 bg-gray-50 hover:bg-green-600 p-6 rounded-2xl transition-all duration-300 border border-gray-100 hover:border-green-600">
+                <a href="https://wa.me/60179978841" target="_blank" rel="noopener noreferrer" className="group/item flex items-center gap-4 bg-gray-50 hover:bg-green-600 p-6 rounded-2xl transition-all duration-300 border border-gray-100 hover:border-green-600">
                   <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-green-500 group-hover/item:scale-110 transition-transform shadow-sm">
                     <Smartphone className="w-6 h-6" />
                   </div>
                   <div>
                     <div className="text-[10px] font-black uppercase text-gray-400 group-hover/item:text-green-50 tracking-widest mb-1">WhatsApp/Phone</div>
-                    <div className="font-bold text-gray-900 group-hover/item:text-white transition-colors">01133383836</div>
+                    <div className="font-bold text-gray-900 group-hover/item:text-white transition-colors">0179978841</div>
                   </div>
                 </a>
               </div>
