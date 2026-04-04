@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { User, Mail, Phone, Building2, MapPin, Search, ChevronRight, Hash, Layers, Home, Navigation, Globe, Send, Smartphone, Check } from "lucide-react";
+import { reportLeadConversion } from "../utils/gtag";
 
 export default function CoverageForm() {
   const [formData, setFormData] = useState({
@@ -53,6 +54,10 @@ export default function CoverageForm() {
 
       if (response.ok) {
         console.log("Coverage form submitted successfully");
+        
+        // Report Conversion
+        reportLeadConversion();
+
         setIsSuccess(true);
         // Also send to WhatsApp
         import("../utils/whatsapp").then(({ sendToWhatsApp }) => {

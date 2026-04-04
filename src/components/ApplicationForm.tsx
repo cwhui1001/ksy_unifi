@@ -7,6 +7,7 @@ import {
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { sendToWhatsApp } from "../utils/whatsapp";
+import { reportLeadConversion } from "../utils/gtag";
 
 interface ApplicationFormProps {
   initialType: "home" | "business";
@@ -160,6 +161,10 @@ export default function ApplicationForm({ initialType }: ApplicationFormProps) {
 
       if (response.ok) {
         console.log("Form Submitted Successfully");
+        
+        // Report Conversion
+        reportLeadConversion();
+
         // Send to WhatsApp first before UI changes
         const label = initialType === 'home' ? 'Home' : 'Business';
         sendToWhatsApp(`Unifi ${label} Broadband Application`, formData);

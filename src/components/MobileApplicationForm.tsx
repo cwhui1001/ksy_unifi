@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { sendToWhatsApp } from "../utils/whatsapp";
+import { reportLeadConversion } from "../utils/gtag";
 
 export default function MobileApplicationForm() {
   const router = useRouter();
@@ -166,6 +167,10 @@ export default function MobileApplicationForm() {
 
       if (response.ok) {
         console.log("Mobile Application Submitted Successfully");
+        
+        // Report Conversion
+        reportLeadConversion();
+
         // Send to WhatsApp first
         sendToWhatsApp("Mobile Postpaid Application", formData);
         setIsSuccess(true);
