@@ -1,4 +1,5 @@
 import React from "react";
+import { trackButtonClick, reportLeadConversion } from "../utils/gtag";
 
 const WhatsAppButton = () => {
   const phoneNumber = "60179978841";
@@ -6,11 +7,17 @@ const WhatsAppButton = () => {
   const encodedMessage = encodeURIComponent(message);
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
 
+  const handleClick = () => {
+    trackButtonClick("WhatsApp Floating Button");
+    reportLeadConversion();
+  };
+
   return (
     <a
       href={whatsappUrl}
       target="_blank"
       rel="noopener noreferrer"
+      onClick={handleClick}
       className="fixed bottom-8 right-8 z-[100] group flex items-center gap-4 transition-all duration-500"
       aria-label="Chat on WhatsApp"
     >

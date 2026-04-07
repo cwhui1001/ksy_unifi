@@ -7,7 +7,8 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { sendToWhatsApp } from "../utils/whatsapp";
-import { reportLeadConversion } from "../utils/gtag";
+import { reportLeadConversion, trackButtonClick } from "../utils/gtag";
+
 
 export default function MobileApplicationForm() {
   const router = useRouter();
@@ -115,11 +116,13 @@ export default function MobileApplicationForm() {
     e.preventDefault();
     if (!formData.accept1) {
       alert("Please accept the terms and conditions.");
+      trackButtonClick("Mobile Form: Validation Failed (T&C)");
       return;
     }
 
     if (!files.mykad_front || !files.mykad_back) {
       alert("Please upload both the front and back side of your ID.");
+      trackButtonClick("Mobile Form: Validation Failed (Files)");
       return;
     }
 
@@ -170,6 +173,7 @@ export default function MobileApplicationForm() {
         
         // Report Conversion
         reportLeadConversion();
+        trackButtonClick("Mobile Form Success");
 
         // Send to WhatsApp first
         sendToWhatsApp("Mobile Postpaid Application", formData);
@@ -219,7 +223,10 @@ export default function MobileApplicationForm() {
           </p>
           <div className="mt-12 flex flex-col sm:flex-row gap-4 justify-center">
             <button 
-              onClick={() => sendToWhatsApp("Mobile Postpaid Application", formData)}
+              onClick={() => {
+                trackButtonClick("Mobile Success: WhatsApp Chat");
+                sendToWhatsApp("Mobile Postpaid Application", formData);
+              }}
               className="px-8 py-4 bg-green-500 text-white font-black rounded-full hover:bg-green-600 transition-all duration-300 shadow-xl shadow-green-200 uppercase tracking-widest text-sm flex items-center justify-center gap-2"
             >
               <Smartphone className="w-5 h-5" />
@@ -227,12 +234,16 @@ export default function MobileApplicationForm() {
             </button>
             <Link 
               href="/postpaid"
+              onClick={() => trackButtonClick("Mobile Success: Back to Plans")}
               className="px-8 py-4 bg-[#1800E7] text-white font-black rounded-full hover:bg-[#0C00B3] transition-all duration-300 shadow-xl shadow-blue-200 uppercase tracking-widest text-sm"
             >
               Back to Plans
             </Link>
             <button 
-              onClick={() => setIsSuccess(false)}
+              onClick={() => {
+                setIsSuccess(false);
+                trackButtonClick("Mobile Success: Apply Again");
+              }}
               className="px-8 py-4 bg-white text-[#1800E7] font-black rounded-full border-2 border-[#1800E7] hover:bg-gray-50 transition-all duration-300 uppercase tracking-widest text-sm"
             >
               Apply Again
@@ -695,6 +706,7 @@ export default function MobileApplicationForm() {
             <button
               type="submit"
               disabled={isSubmitting}
+              onClick={() => trackButtonClick("Mobile Form Click Submit")}
               className="w-full relative flex items-stretch h-[74px] group cursor-pointer transition-all duration-300 disabled:opacity-70 disabled:grayscale disabled:cursor-not-allowed hover:scale-[1.01] active:scale-[0.99]"
             >
               <div className="flex-1 font-black text-xl md:text-2xl tracking-[0.15em] text-white transition-all rounded-l-full flex justify-center items-center shadow-2xl bg-[#1800E7] group-hover:bg-[#0C00B3] shadow-blue-200">

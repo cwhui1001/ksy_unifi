@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { Menu, X, Wifi } from "lucide-react";
+import { trackButtonClick } from "@/utils/gtag";
+
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -39,6 +41,7 @@ export default function Navbar() {
                 <Link
                   key={link.name}
                   href={link.path}
+                  onClick={() => trackButtonClick(`Navbar Link: ${link.name}`)}
                   className={`text-sm font-semibold transition-colors duration-200 hover:text-[#FF7A00] ${
                     isActive ? "text-[#FF7A00]" : "text-[#005B9F]"
                   }`}
@@ -48,7 +51,10 @@ export default function Navbar() {
               );
             })}
             <Link href="/check-coverage/">
-              <button className="bg-[#FF7A00] hover:bg-[#e06b00] text-white px-6 py-2.5 rounded-full font-bold shadow-lg shadow-orange-500/30 transition-all hover:shadow-orange-500/50 hover:-translate-y-0.5 ml-4">
+              <button 
+                onClick={() => trackButtonClick("Navbar: Check Coverage Desktop")}
+                className="bg-[#FF7A00] hover:bg-[#e06b00] text-white px-6 py-2.5 rounded-full font-bold shadow-lg shadow-orange-500/30 transition-all hover:shadow-orange-500/50 hover:-translate-y-0.5 ml-4"
+              >
                 Check Coverage
               </button>
             </Link>
@@ -79,7 +85,10 @@ export default function Navbar() {
               <Link
                 key={link.name}
                 href={link.path}
-                onClick={() => setIsOpen(false)}
+                onClick={() => {
+                  setIsOpen(false);
+                  trackButtonClick(`Mobile Nav Link: ${link.name}`);
+                }}
                 className={`block px-3 py-3 rounded-xl text-base font-semibold ${
                   isActive
                     ? "bg-orange-50 text-[#FF7A00]"
@@ -91,7 +100,10 @@ export default function Navbar() {
             );
           })}
           <div className="pt-4 px-3">
-            <Link href="/check-coverage/" onClick={() => setIsOpen(false)}>
+            <Link href="/check-coverage/" onClick={() => {
+              setIsOpen(false);
+              trackButtonClick("Mobile Nav: Check Coverage");
+            }}>
               <button className="w-full bg-[#FF7A00] hover:bg-[#e06b00] text-white px-4 py-3 rounded-full font-bold shadow-md transition-colors">
                 Check Coverage
               </button>

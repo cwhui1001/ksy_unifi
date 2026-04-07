@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { User, Mail, Phone, Building2, MapPin, Search, ChevronRight, Hash, Layers, Home, Navigation, Globe, Send, Smartphone, Check } from "lucide-react";
-import { reportLeadConversion } from "../utils/gtag";
+import { reportLeadConversion, trackButtonClick } from "../utils/gtag";
+
 
 export default function CoverageForm() {
   const [formData, setFormData] = useState({
@@ -108,6 +109,7 @@ export default function CoverageForm() {
         <div className="mt-12 flex flex-col sm:flex-row gap-4 justify-center">
           <button 
             onClick={() => {
+              trackButtonClick("Coverage Success: WhatsApp Chat");
               import("../utils/whatsapp").then(({ sendToWhatsApp }) => {
                 sendToWhatsApp("Coverage Check Request", formData);
               });
@@ -118,7 +120,10 @@ export default function CoverageForm() {
             Chat on WhatsApp
           </button>
           <button 
-            onClick={() => setIsSuccess(false)}
+            onClick={() => {
+              setIsSuccess(false);
+              trackButtonClick("Coverage Success: Verify Another Address");
+            }}
             className="px-8 py-4 bg-[#1800E7] text-white font-black rounded-full hover:bg-[#0C00B3] transition-all duration-300 shadow-xl shadow-blue-200 uppercase tracking-widest text-sm"
           >
             Verify Another Address
@@ -223,7 +228,6 @@ export default function CoverageForm() {
                       name="building_name" 
                       placeholder="Building Unit" 
                       className={`${inputClasses} pl-12`}
-                      required
                       value={formData["building_name"]}
                       onChange={handleInputChange}
                     />
@@ -239,7 +243,6 @@ export default function CoverageForm() {
                       name="floor_no" 
                       placeholder="Building Floor" 
                       className={`${inputClasses} pl-12`}
-                      required
                       value={formData["floor_no"]}
                       onChange={handleInputChange}
                     />
@@ -255,7 +258,6 @@ export default function CoverageForm() {
                       name="unit_no" 
                       placeholder="Building Block" 
                       className={`${inputClasses} pl-12`}
-                      required
                       value={formData["unit_no"]}
                       onChange={handleInputChange}
                     />
@@ -271,7 +273,6 @@ export default function CoverageForm() {
                       name="block_no" 
                       placeholder="Building Name" 
                       className={`${inputClasses} pl-12`}
-                      required
                       value={formData["block_no"]}
                       onChange={handleInputChange}
                     />

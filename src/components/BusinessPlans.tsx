@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { trackButtonClick } from '@/utils/gtag';
 
 // --- DATA CONFIGURATION START ---
 
@@ -349,6 +350,7 @@ export default function BusinessPlans() {
               {NAV_LINKS.map((link) => (
                 <a 
                   key={link.label}
+                  onClick={() => trackButtonClick(`Business Nav: ${link.label}`)}
                   className={`overflow-hidden inline-flex items-center justify-center whitespace-nowrap ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-slate-950 dark:focus-visible:ring-slate-300 mb-2 rounded-none py-4 px-6 w-full h-auto font-bold ${link.active ? 'border-x border-t-8 border-tm-cobalt-blue-600 bg-white text-tm-cobalt-blue-600' : 'bg-[#E6E6E6] text-tm-grey-500'}`} 
                   href={link.href}
                 >
@@ -447,6 +449,7 @@ export default function BusinessPlans() {
                                             </div>
                                             <div className="mt-2 text-center cursor-pointer pointer-events-auto">
                                               <Link 
+                                                onClick={() => trackButtonClick(`Business Plan Select: ${plan.speed}${plan.unit}`)}
                                                 href={`/apply-unifi-business?package=Unifi%20Business%20Broadband&plan=${plan.speed}${plan.unit}`} 
                                                 className="overflow-hidden inline-flex items-center justify-center whitespace-nowrap rounded-full font-bold shadow-sm hover:shadow-lg ring-offset-white transition-all hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2 disabled:pointer-events-none text-white bg-[#005B9F] hover:bg-[#FF7A00] h-10 px-4 py-2 gap-0 pointer-events-auto w-full"
                                               >
@@ -600,7 +603,10 @@ export default function BusinessPlans() {
       
       {/* Footer Links (FAQ & T&C) */}
       <div className="mx-auto flex flex-col sm:flex-row items-center justify-center gap-6 py-12 border-t border-gray-200 w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <Link href="/tnc-and-faq/faq/business/" target="_blank" className="group cursor-pointer flex items-stretch h-[54px] w-full sm:w-auto min-w-[220px] decoration-transparent relative z-10 pointer-events-auto shadow-[0_5px_15px_rgba(24,0,231,0.2)] rounded-full">
+        <Link 
+          onClick={() => trackButtonClick("Business FAQ View")}
+          href="/tnc-and-faq/faq/business/" target="_blank" className="group cursor-pointer flex items-stretch h-[54px] w-full sm:w-auto min-w-[220px] decoration-transparent relative z-10 pointer-events-auto shadow-[0_5px_15px_rgba(24,0,231,0.2)] rounded-full"
+        >
           <div className="flex-1 font-extrabold text-[15px] tracking-wide text-white transition-all rounded-l-full flex justify-center items-center outline-none bg-[#1800E7] group-hover:bg-[#0C00B3] border-y-[2px] border-l-[2px] border-[#1800E7] group-hover:border-[#0C00B3] px-6">
             <span>View All FAQ</span>
           </div>
@@ -611,7 +617,10 @@ export default function BusinessPlans() {
           ></div>
         </Link>
 
-        <Link href="/tnc-and-faq/tnc/business/" target="_blank" className="group cursor-pointer flex items-stretch h-[54px] w-full sm:w-auto min-w-[220px] decoration-transparent relative z-10 pointer-events-auto shadow-[0_5px_15px_rgba(24,0,231,0.2)] rounded-full">
+        <Link 
+          onClick={() => trackButtonClick("Business T&C View")}
+          href="/tnc-and-faq/tnc/business/" target="_blank" className="group cursor-pointer flex items-stretch h-[54px] w-full sm:w-auto min-w-[220px] decoration-transparent relative z-10 pointer-events-auto shadow-[0_5px_15px_rgba(24,0,231,0.2)] rounded-full"
+        >
           <div className="flex-1 font-extrabold text-[15px] tracking-wide text-white transition-all rounded-l-full flex justify-center items-center outline-none bg-[#1800E7] group-hover:bg-[#0C00B3] border-y-[2px] border-l-[2px] border-[#1800E7] group-hover:border-[#0C00B3] px-6">
             <span>View T&C</span>
           </div>

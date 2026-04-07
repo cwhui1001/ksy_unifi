@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import { CheckCircle2, ArrowRight, Briefcase, Globe, HeadphonesIcon, TrendingUp } from "lucide-react";
 import BusinessPlans from "../components/BusinessPlans";
+import { trackButtonClick } from "@/utils/gtag";
 
 export default function BusinessPage() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -137,24 +138,36 @@ export default function BusinessPage() {
           
           <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2 z-50">
             <button 
-              onClick={() => setCurrentSlide(0)} 
+              onClick={() => {
+                setCurrentSlide(0);
+                trackButtonClick("Business Slider Dot: 1");
+              }} 
               className={`w-3 h-3 rounded-full transition-colors ${currentSlide === 0 ? 'bg-[#FF7A00]' : 'bg-gray-400/50 hover:bg-gray-400'}`}
               aria-label="Go to slide 1"
             ></button>
             <button 
-              onClick={() => setCurrentSlide(1)} 
+              onClick={() => {
+                setCurrentSlide(1);
+                trackButtonClick("Business Slider Dot: 2");
+              }} 
               className={`w-3 h-3 rounded-full transition-colors ${currentSlide === 1 ? 'bg-[#FF7A00]' : 'bg-gray-400/50 hover:bg-gray-400'}`}
               aria-label="Go to slide 2"
             ></button>
           </div>
           <button 
-            onClick={() => setCurrentSlide((prev) => (prev === 0 ? 1 : 0))}
+            onClick={() => {
+              setCurrentSlide((prev) => (prev === 0 ? 1 : 0));
+              trackButtonClick("Business Slider Prev");
+            }}
             className="absolute top-1/2 left-4 -translate-y-1/2 w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity z-50 hover:bg-white/40"
           >
             ←
           </button>
           <button 
-            onClick={() => setCurrentSlide((prev) => (prev === 0 ? 1 : 0))}
+            onClick={() => {
+              setCurrentSlide((prev) => (prev === 0 ? 1 : 0));
+              trackButtonClick("Business Slider Next");
+            }}
             className="absolute top-1/2 right-4 -translate-y-1/2 w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity z-50 hover:bg-white/40"
           >
             →

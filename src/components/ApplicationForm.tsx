@@ -7,7 +7,8 @@ import {
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { sendToWhatsApp } from "../utils/whatsapp";
-import { reportLeadConversion } from "../utils/gtag";
+import { reportLeadConversion, trackButtonClick } from "../utils/gtag";
+
 
 interface ApplicationFormProps {
   initialType: "home" | "business";
@@ -109,11 +110,13 @@ export default function ApplicationForm({ initialType }: ApplicationFormProps) {
     e.preventDefault();
     if (!formData.accept1) {
       alert("Please accept the terms and conditions.");
+      trackButtonClick("Application Form: Validation Failed (T&C)");
       return;
     }
 
     if (!files.mykad_front || !files.mykad_back) {
       alert("Please upload both the front and back side of your ID.");
+      trackButtonClick("Application Form: Validation Failed (Files)");
       return;
     }
 
@@ -164,6 +167,7 @@ export default function ApplicationForm({ initialType }: ApplicationFormProps) {
         
         // Report Conversion
         reportLeadConversion();
+        trackButtonClick(`Application Form Success: ${initialType}`);
 
         // Send to WhatsApp first before UI changes
         const label = initialType === 'home' ? 'Home' : 'Business';
@@ -217,6 +221,7 @@ export default function ApplicationForm({ initialType }: ApplicationFormProps) {
             <button 
               onClick={() => {
                 const label = initialType === 'home' ? 'Home' : 'Business';
+                trackButtonClick(`Application Success: WhatsApp Chat (${label})`);
                 sendToWhatsApp(`Unifi ${label} Broadband Application`, formData);
               }}
               className="px-8 py-4 bg-green-500 text-white font-black rounded-full hover:bg-green-600 transition-all duration-300 shadow-xl shadow-green-200 uppercase tracking-widest text-sm flex items-center justify-center gap-2"
@@ -226,12 +231,16 @@ export default function ApplicationForm({ initialType }: ApplicationFormProps) {
             </button>
             <Link 
               href="/"
+              onClick={() => trackButtonClick("Application Success: Return Home")}
               className="px-8 py-4 bg-[#1800E7] text-white font-black rounded-full hover:bg-[#0C00B3] transition-all duration-300 shadow-xl shadow-blue-200 uppercase tracking-widest text-sm"
             >
               Return Home
             </Link>
             <button 
-              onClick={() => setIsSuccess(false)}
+              onClick={() => {
+                setIsSuccess(false);
+                trackButtonClick("Application Success: New Application");
+              }}
               className="px-8 py-4 bg-white text-[#1800E7] font-black rounded-full border-2 border-[#1800E7] hover:bg-gray-50 transition-all duration-300 uppercase tracking-widest text-sm"
             >
               New Application
@@ -257,6 +266,7 @@ export default function ApplicationForm({ initialType }: ApplicationFormProps) {
         <div className="flex flex-col sm:flex-row gap-4 max-w-2xl mx-auto mb-16">
           <Link 
             href="/apply-unifi-home"
+            onClick={() => trackButtonClick("Application Type: Home")}
             className={`flex-1 py-5 rounded-2xl flex items-center justify-center gap-3 font-black text-lg transition-all duration-500 shadow-lg ${
               initialType === "home" 
                 ? "bg-[#1800E7] text-white shadow-blue-200 scale-105 z-10" 
@@ -268,6 +278,7 @@ export default function ApplicationForm({ initialType }: ApplicationFormProps) {
           </Link>
           <Link 
             href="/apply-unifi-business"
+            onClick={() => trackButtonClick("Application Type: Business")}
             className={`flex-1 py-5 rounded-2xl flex items-center justify-center gap-3 font-black text-lg transition-all duration-500 shadow-lg ${
               initialType === "business" 
                 ? "bg-[#FF7A00] text-white shadow-orange-200 scale-105 z-10" 
@@ -721,6 +732,7 @@ export default function ApplicationForm({ initialType }: ApplicationFormProps) {
             <button
               type="submit"
               disabled={isSubmitting}
+              onClick={() => trackButtonClick(`Application Click Submit: ${initialType}`)}
               className="w-full relative flex items-stretch h-[74px] group cursor-pointer transition-all duration-300 disabled:opacity-70 disabled:grayscale disabled:cursor-not-allowed hover:scale-[1.01] active:scale-[0.99]"
             >
               <div className={`flex-1 font-black text-xl md:text-2xl tracking-[0.15em] text-white transition-all rounded-l-full flex justify-center items-center shadow-2xl ${initialType === 'home' ? 'bg-[#1800E7] group-hover:bg-[#0C00B3] shadow-blue-200' : 'bg-[#FF7A00] group-hover:bg-[#E05200] shadow-orange-200'}`}>

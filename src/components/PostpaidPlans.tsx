@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { CheckCircle2, ChevronDown, ChevronUp, Star, Gift, Zap, Smartphone, Globe, ShieldCheck, ArrowRight } from "lucide-react";
+import { trackButtonClick } from "@/utils/gtag";
 
 interface PlanFeature {
   icon?: string;
@@ -247,7 +248,10 @@ export default function PostpaidPlans() {
       <div className="max-w-7xl mx-auto px-4 mt-8 mb-12">
         <div className="flex justify-center items-center gap-4">
           <button
-            onClick={() => setActiveTab("individual")}
+            onClick={() => {
+              setActiveTab("individual");
+              trackButtonClick("Postpaid Tab: Individual");
+            }}
             className={`flex flex-col items-center justify-center px-8 py-3 rounded-full transition-all duration-300 min-w-[240px] ${
               activeTab === "individual"
                 ? "bg-[#1800E7] text-white shadow-xl"
@@ -261,7 +265,10 @@ export default function PostpaidPlans() {
           </button>
 
           <button
-            onClick={() => setActiveTab("family")}
+            onClick={() => {
+              setActiveTab("family");
+              trackButtonClick("Postpaid Tab: Family");
+            }}
             className={`flex flex-col items-center justify-center px-8 py-3 rounded-full transition-all duration-300 min-w-[240px] ${
               activeTab === "family"
                 ? "bg-[#1800E7] text-white shadow-xl"
@@ -454,6 +461,7 @@ export default function PostpaidPlans() {
                     {/* Standardized CTA Button inspired by Home Plans */}
                     <div className="mt-6 mb-2 w-full flex items-stretch h-[50px] group/btn cursor-pointer pointer-events-auto transition-all duration-300">
                       <Link
+                        onClick={() => trackButtonClick(`Postpaid Buy Now: ${plan.name}`)}
                         href={`/apply-unifi-mobile?plan=${plan.name}`}
                         className={`flex-1 font-black text-[14px] tracking-widest text-white transition-all rounded-l-full flex justify-center items-center outline-none bg-[#1800E7] hover:bg-[#0C00B3] decoration-transparent`}
                       >

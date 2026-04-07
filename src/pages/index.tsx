@@ -3,6 +3,7 @@ import Head from "next/head";
 import { CheckCircle2, ChevronDown, ChevronLeft, ChevronRight, ArrowUpDown, Router, Headset } from "lucide-react";
 import Link from "next/link";
 import HomeFAQ from "@/components/HomeFAQ";
+import { trackButtonClick } from "@/utils/gtag";
 
 export default function HomePage() {
   const sliderRef = useRef<HTMLDivElement>(null);
@@ -227,14 +228,20 @@ export default function HomePage() {
           <div className="relative w-full">
             {/* Slider Controls */}
             <button 
-              onClick={scrollLeft}
+              onClick={() => {
+                scrollLeft();
+                trackButtonClick("Home Slider Prev");
+              }}
               className="absolute left-2 lg:-left-6 top-[45%] -translate-y-1/2 z-30 bg-[#A688FD]/90 hover:bg-[#A688FD] text-white w-11 h-11 flex items-center justify-center rounded-full shadow-[0_4px_14px_rgba(0,0,0,0.15)] transition-transform hover:scale-110 hidden md:flex"
             >
               <ChevronLeft className="w-8 h-8 stroke-white shrink-0 mr-0.5" strokeWidth={3} />
             </button>
             
             <button 
-              onClick={scrollRight}
+              onClick={() => {
+                scrollRight();
+                trackButtonClick("Home Slider Next");
+              }}
               className="absolute right-2 lg:-right-6 top-[45%] -translate-y-1/2 z-30 bg-[#351AE1]/90 hover:bg-[#351AE1] text-white w-11 h-11 flex items-center justify-center rounded-full shadow-[0_4px_14px_rgba(0,0,0,0.15)] transition-transform hover:scale-110 hidden md:flex"
             >
               <ChevronRight className="w-8 h-8 stroke-white shrink-0 ml-0.5" strokeWidth={3} />
@@ -297,7 +304,10 @@ export default function HomePage() {
                     {/* Header/Speed */}
                     <div 
                       className="flex justify-between items-center mt-2 mb-2 cursor-pointer group"
-                      onClick={() => togglePlan(index)}
+                      onClick={() => {
+                        togglePlan(index);
+                        trackButtonClick(`Toggle Plan Details: ${plan.speed}`);
+                      }}
                     >
                       <h3 className="text-[2rem] leading-none font-black text-black tracking-tight group-hover:text-orange-600 transition-colors uppercase select-none">{plan.speed}</h3>
                       <ChevronDown className={`w-5 h-5 text-[#FF7A00] stroke-[3] transition-transform duration-300 ${expandedPlans[index] ? 'rotate-180' : ''}`} />
@@ -472,6 +482,7 @@ export default function HomePage() {
                     {/* CTA Button */}
                     <div className="mt-8 mb-2 w-full flex items-stretch h-[46px] group cursor-pointer pointer-events-auto">
                       <Link 
+                        onClick={() => trackButtonClick(`Home Plan Signup: ${plan.speed}`)}
                         href={`/apply-unifi-home?package=Unifi%20Home%20Plan&plan=${plan.speed.replace(' ', '')}`}
                         className={`flex-1 font-extrabold text-[13px] tracking-widest text-white transition-all rounded-l-full flex justify-center items-center outline-none ${
                           plan.bestSeller ? 'bg-[#FF7A00] group-hover:bg-[#E05200]' : 'bg-[#1800E7] group-hover:bg-[#0C00B3]'
@@ -511,7 +522,11 @@ export default function HomePage() {
             </div>
             
             <div className="flex justify-center w-full mt-8">
-               <Link href="/check-coverage" className="group cursor-pointer flex items-stretch h-[54px] w-full max-w-[320px] decoration-transparent relative z-40 pointer-events-auto">
+               <Link 
+                 onClick={() => trackButtonClick("Check Fibre Coverage CTA")}
+                 href="/check-coverage" 
+                 className="group cursor-pointer flex items-stretch h-[54px] w-full max-w-[320px] decoration-transparent relative z-40 pointer-events-auto"
+               >
                     <div className="flex-1 font-extrabold text-[15px] tracking-wide text-white transition-all rounded-l-full flex justify-center items-center outline-none bg-[#1800E7] group-hover:bg-[#0C00B3] shadow-[0_8px_20px_rgba(24,0,231,0.25)] border-y-[2px] border-l-[2px] border-[#1800E7] group-hover:border-[#0C00B3]">
                         <span className="translate-x-3">Check Fibre Coverage</span>
                     </div>
@@ -594,7 +609,11 @@ export default function HomePage() {
                     YOUR UNIFI HOME <br className="hidden md:block"/>INSTALLATION GUIDE
                 </h2>
                 <div className="button button-arrow w-full flex justify-center">
-                    <Link href="/installation-guide" className="group cursor-pointer flex items-stretch h-[54px] w-full max-w-[280px] decoration-transparent relative z-10 pointer-events-auto shadow-[0_8px_20px_rgba(24,0,231,0.25)] rounded-full">
+                    <Link 
+                        onClick={() => trackButtonClick("View Installation Guide CTA")}
+                        href="/installation-guide" 
+                        className="group cursor-pointer flex items-stretch h-[54px] w-full max-w-[280px] decoration-transparent relative z-10 pointer-events-auto shadow-[0_8px_20px_rgba(24,0,231,0.25)] rounded-full"
+                    >
                         <div className="flex-1 font-extrabold text-[15px] tracking-wide text-white transition-all rounded-l-full flex justify-center items-center outline-none bg-[#1800E7] group-hover:bg-[#0C00B3] border-y-[2px] border-l-[2px] border-[#1800E7] group-hover:border-[#0C00B3]">
                             <span className="translate-x-3">See My Guide</span>
                         </div>
