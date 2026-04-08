@@ -12,6 +12,14 @@ export default function HomePage() {
     0: true, 1: true, 2: true, 3: true, 4: true
   });
 
+  const [expandedWinback, setExpandedWinback] = useState<Record<number, boolean>>({
+    0: true, 1: true, 2: true, 3: true
+  });
+  
+  const toggleWinback = (index: number) => {
+    setExpandedWinback(prev => ({ ...prev, [index]: !prev[index] }));
+  };
+
   const togglePlan = (index: number) => {
     setExpandedPlans(prev => ({ ...prev, [index]: !prev[index] }));
   };
@@ -58,7 +66,85 @@ export default function HomePage() {
     }
   };
 
-
+const winbackPlans = [
+    {
+      speedNum: "100", speedUnit: "Mbps",
+      bestValue: false,
+      description: "Great for small households and apartments with 2 to 4 users/devices.",
+      promoImg: "/images/unifi_special_promo.png",
+      deals: [
+        { highlight: "Free", text: "6 Months WiFi" }
+      ],
+      features: [
+        { title: "Unlimited Data", text: "Download speed up to 100mbps\nUpload speed up to 50mbps" },
+        { title: "FREE WiFi 6 Combo Box Router", text: "" },
+        { title: "Beyond Call Rate", text: "Mobile/All Fixed Line: 20sen/min" }
+      ],
+      price: "89",
+      slashed: "RRP: RM99/mth",
+      contract: "36-months contract"
+    },
+    {
+      speedNum: "300", speedUnit: "Mbps",
+      bestValue: false,
+      description: "Optimal for Families, Home Offices and Townhouses with 4 to 6 users/devices.",
+      promoImg: "/images/unifi_special_promo.png",
+      deals: [
+        { highlight: "Free", text: "6 Months WiFi (30-months contract)" },
+        { highlight: "ADD-ON", text: "RM10/mth Get 43″ TV (36-months contract)" }
+      ],
+      features: [
+        { title: "Unlimited Data", text: "Download speed up to 300mbps\nUpload speed up to 50mbps" },
+        { title: "FREE WiFi 6 Combo Box Router", text: "" },
+        { title: "Get 600 minutes to fixed & mobile", text: "" },
+        { title: "Beyond Call Rate", text: "TM Fixed Line: FREE\nMobile/Other Fixed Line: 10sen/min" }
+      ],
+      price: "129",
+      slashed: "RRP: RM139/mth",
+      contract: ""
+    },
+    {
+      speedNum: "500", speedUnit: "Mbps",
+      bestValue: true,
+      description: "Perfect for gamers and streamers in houses with 6 to 8 users/devices.",
+      promoImg: "/images/unifi_special_promo.png",
+      deals: [
+        { highlight: "Free", text: "6 Months WiFi (30-months contract)" },
+        { highlight: "ADD-ON", text: "RM10/mth Get 55″ TV (36-months contract)" },
+        { highlight: "ADD-ON", text: "RM20/mth Get 65″ TV (36-months contract)" },
+        { highlight: "ADD-ON", text: "RM10/mth Get iPad 11″ A16 WiFi 128GB (36-months contract)" }
+      ],
+      features: [
+        { title: "Unlimited Data", text: "Download speed up to 500mbps\nUpload speed up to 100mbps" },
+        { title: "FREE WiFi 6 Combo Box Router", text: "" },
+        { title: "Get 600 minutes to fixed & mobile", text: "" },
+        { title: "Beyond Call Rate", text: "TM Fixed Line: FREE\nMobile/Other Fixed Line: 10sen/min" }
+      ],
+      price: "149",
+      slashed: "RRP: RM159/mth",
+      contract: ""
+    },
+    {
+      speedNum: "1", speedUnit: "Gbps",
+      bestValue: false,
+      description: "Lightning-Fast Speed for Power Users in Larger Homes with 8 to 10 users/devices.",
+      promoImg: "/images/unifi_special_promo.png",
+      deals: [
+        { highlight: "Free", text: "6 Months WiFi (30-months contract)" },
+        { highlight: "ADD-ON", text: "RM10/mth Get 65″ TV (36-months contract)" },
+        { highlight: "ADD-ON", text: "RM20/mth Get 75″ TV (36-months contract)" }
+      ],
+      features: [
+        { title: "Unlimited Data", text: "Download speed up to 1Gbps\nUpload speed up to 500mbps" },
+        { title: "FREE WiFi 7 Combo Box Router", text: "" },
+        { title: "Get 600 minutes to fixed & mobile", text: "" },
+        { title: "Beyond Call Rate", text: "TM Fixed Line: FREE\nMobile/Other Fixed Line: 10sen/min" }
+      ],
+      price: "249",
+      slashed: "",
+      contract: ""
+    }
+  ];
 
 
   const plans = [
@@ -210,6 +296,175 @@ export default function HomePage() {
         </div>
       </div>
 
+      {/* Plans Section */}
+      <section className="py-8 bg-gray-50 relative">
+        <div className="max-w-[1350px] mx-auto relative px-2 sm:px-6 lg:px-8">
+          {/* WINBACK SPECIAL PROMO SECTION */}
+          <div id="winback-section" className="mb-10 px-4 sm:px-0 scroll-mt-24">
+            <div className="text-center mb-10">
+              <h2 className="text-3xl md:text-[2.5rem] font-black tracking-tight leading-none uppercase">
+                <span className="text-[#FF7A00]">Unifi </span>
+                <span className="text-[#1800E7]">Winback Special Promo Plan</span>
+              </h2>
+            </div>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[24px] items-start">
+              {winbackPlans.map((wp, index) => (
+                <div 
+                  key={index} 
+                  className={`flex-none w-full h-auto flex flex-col transition-all duration-500 hover:-translate-y-2 relative group pointer-events-auto ${
+                    wp.bestValue ? 'z-20' : 'hover:z-10'
+                  }`}
+                >
+                  {/* Header Spacer for Top Alignment */}
+                  <div className="w-full shrink-0 relative z-0 flex flex-col justify-end" style={{ height: '42px' }}>
+                    {wp.bestValue && (
+                      <div className="bg-[#FF7A00] text-white text-center py-[10px] font-black text-[13px] tracking-widest uppercase w-full rounded-t-[1.25rem] border-t-[3px] border-x-[3px] border-[#FF7A00] relative overflow-hidden h-full">
+                        <div className="absolute inset-0 opacity-[0.12]" style={{ backgroundImage: "linear-gradient(45deg, #ffffff 25%, transparent 25%, transparent 50%, #ffffff 50%, #ffffff 75%, transparent 75%, transparent)", backgroundSize: "20px 20px" }}></div>
+                        <span className="relative z-10">BEST VALUE</span>
+                      </div>
+                    )}
+                  </div>
+                  
+                  {/* Main White Body */}
+                  <div className={`relative flex flex-col bg-white overflow-hidden w-full h-auto transition-all duration-500 ${
+                    wp.bestValue 
+                      ? 'rounded-b-[1.25rem] border-b-[3px] border-x-[3px] border-[#FF7A00] shadow-[0_15px_40px_rgba(0,0,0,0.12)] hover:shadow-[0_30px_60px_rgba(255,122,0,0.2)]' 
+                      : 'rounded-[1.25rem] border border-gray-100 shadow-[0_8px_25px_rgba(0,0,0,0.06)] hover:shadow-[0_25px_50px_rgba(0,0,0,0.1)]'
+                  }`}>
+                    
+                    {/* Top Badges */}
+                    <div className="flex justify-between items-start w-full">
+                      <div className={`bg-orange-50 text-orange-600 text-[11px] font-bold px-4 py-[6px] rounded-br-[1rem] ${wp.bestValue ? '' : 'rounded-tl-[1.25rem]'}`}>
+                        Unifi Home
+                      </div>
+                      <div className={`bg-gradient-to-r from-[#FF7A00] to-[#1800E7] text-white text-[11px] font-extrabold px-3 py-[6px] rounded-bl-[1rem] ${wp.bestValue ? '' : 'rounded-tr-[1.25rem]'}`}>
+                        Winback Promo
+                      </div>
+                    </div>
+
+                    <div className="p-6 flex-1 flex flex-col">
+                      {/* Header/Speed */}
+                      <div 
+                        className="flex justify-between items-center mt-2 mb-2 cursor-pointer group"
+                        onClick={() => {
+                          toggleWinback(index);
+                          trackButtonClick(`Toggle Winback Details: ${wp.speedNum}${wp.speedUnit}`);
+                        }}
+                      >
+                        <h3 className="text-[2rem] leading-none font-black text-black tracking-tight group-hover:text-orange-600 transition-colors uppercase select-none">
+                          {wp.speedNum} {wp.speedUnit}
+                        </h3>
+                        <ChevronDown className={`w-5 h-5 text-[#FF7A00] stroke-[3] transition-transform duration-300 ${expandedWinback[index] ? 'rotate-180' : ''}`} />
+                      </div>
+
+                      <p className="text-gray-800 text-[14px] mb-6 leading-relaxed pr-4 font-medium min-h-[50px] w-[110%]">
+                        {wp.description}
+                      </p>
+                      
+                      <div className={`transition-all duration-300 overflow-hidden ${expandedWinback[index] ? 'max-h-[800px] opacity-100' : 'max-h-0 opacity-0'}`}>
+                        {/* What's Included */}
+                        <div className="mb-6 mt-0 flex flex-col gap-[12px] bg-[#F9F9F9] p-4 rounded-[1rem]">
+                          <div className="text-[14px] font-extrabold text-black mb-[4px]">What's included</div>
+                          {wp.features.map((feature, idx) => (
+                            <div key={idx} className="flex items-start gap-3">
+                              <div className={`flex w-[18px] items-center justify-center shrink-0 text-[#FF914D] mt-[2px]`}>
+                                {idx === 0 && <ArrowUpDown className="w-[18px] h-[18px] stroke-[2.5]" />}
+                                {idx === 1 && <Router className="w-[18px] h-[18px] stroke-[2.5]" />}
+                                {idx === 2 && <Headset className="w-[18px] h-[18px] stroke-[2.5]" />}
+                                {idx > 2 && <CheckCircle2 className="w-[18px] h-[18px] stroke-[2.5]" />}
+                              </div>
+                              <div className="flex flex-col">
+                                <span className="text-[14px] font-semibold text-gray-800 leading-tight">{feature.title}</span>
+                                {feature.text && <span className="text-[12px] text-gray-500 font-medium leading-[1.3] mt-1 whitespace-pre-line">{feature.text}</span>}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Promo Box identically styled as Add-ons box */}
+                      {wp.deals.length > 0 && (
+                        <div className="mb-4 rounded-[0.85rem] border border-gray-200 overflow-hidden shadow-[0_2px_10px_rgba(0,0,0,0.03)] flex flex-col">
+                          <div className="bg-gradient-to-r from-[#FF7A00] via-[#9D50E5] to-[#1800E7] text-white text-[16px] font-extrabold px-4 py-2.5">
+                            Limited-Time Special
+                          </div>
+                          <div className="bg-white p-3 pt-3">
+                            <div className="text-[14px] font-extrabold text-black mb-2.5">Choose ONE exclusive deal:</div>
+                            <div className="flex flex-col gap-2.5">
+                              {wp.deals.map((deal, dIdx) => (
+                                <div key={dIdx} className="border border-gray-200 rounded-lg flex flex-col overflow-hidden transition-colors group hover:border-[#9D50E5] p-2 bg-white">
+                                  <div className="flex items-center gap-3">
+                                    
+                                    <span className="text-[14px] font-bold text-gray-800 leading-tight w-[100%]">
+                                      <span className="text-[#FF7A00] uppercase font-bold mr-1">{deal.highlight}</span>
+                                      {deal.text}
+                                    </span>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                            <p className="text-[10px] text-gray-400 italic mt-3 font-medium">*Terms & Conditions Apply</p>
+                          </div>
+                        </div>
+                      )}
+                      
+                      <div className="flex-1"></div>
+
+                      {/* Pricing */}
+                      <div className="flex flex-col mt-4">
+                        <div className="bg-[#FF6A00] text-white font-bold text-[11px] px-3 py-[3px] rounded-full inline-flex self-start mb-3 shadow-sm">
+                          Winback Special
+                        </div>
+                        
+                        <div className="flex items-end gap-[2px] mb-1">
+                          <span className="text-[1.5rem] font-black text-[#1800E7] leading-none mb-[2px] tracking-tight">RM</span>
+                          <span className="text-[3rem] font-black text-[#1800E7] leading-none tracking-tighter">
+                            {wp.price}
+                          </span>
+                          <span className="text-black font-extrabold text-[12px] mb-[6px] ml-[2px]">/mth</span>
+                          {wp.slashed && (
+                            <span className="text-[#FF7A00] font-bold text-[11px] line-through ml-2 mb-[6px]">{wp.slashed.replace('RRP: ', '')}</span>
+                          )}
+                        </div>
+                        
+                        {wp.contract ? (
+                          <div className="bg-[#EEF2FF] text-[#1800E7] font-extrabold text-[11px] px-3 py-1.5 rounded-[6px] inline-flex self-start mt-1 relative">
+                            {wp.contract}
+                          </div>
+                        ) : (
+                           <div className="h-[28px] mt-1"></div> 
+                        )}
+                      </div>
+
+                      {/* CTA Button */}
+                      <div className="mt-8 mb-2 w-full flex items-stretch h-[46px] group cursor-pointer pointer-events-auto">
+                        <Link 
+                          onClick={() => trackButtonClick(`Winback Signup: ${wp.speedNum}${wp.speedUnit}`)}
+                          href={`/apply-unifi-home?package=Unifi%20Winback%20Special%20Promo%20Plan&plan=${wp.speedNum}${wp.speedUnit}`} 
+                          className={`flex-1 font-extrabold text-[13px] tracking-widest text-white transition-all rounded-l-full flex justify-center items-center outline-none ${
+                            wp.bestValue ? 'bg-[#FF7A00] group-hover:bg-[#E05200]' : 'bg-[#1800E7] group-hover:bg-[#0C00B3]'
+                          }`}
+                        >
+                          <span className="translate-x-3">SIGN UP NOW</span>
+                        </Link>
+                        <div className="w-[4px] bg-white z-10 shrink-0"></div>
+                        <div 
+                          className={`w-12 transition-all flex items-center justify-center shrink-0 ${
+                            wp.bestValue ? 'bg-[#FF7A00] group-hover:bg-[#E05200]' : 'bg-[#1800E7] group-hover:bg-[#0C00B3]'
+                          }`}
+                          style={{ clipPath: "polygon(0 0, 75% 0, 100% 50%, 75% 100%, 0 100%)", borderTopRightRadius: "99px", borderBottomRightRadius: "99px" }}
+                        ></div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Plans Section */}
       <section className="py-16 bg-white relative">

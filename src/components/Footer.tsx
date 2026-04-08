@@ -58,8 +58,6 @@ export default function Footer() {
         <div className="pt-8 border-t border-blue-800 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-blue-300">
           <div className="flex flex-col gap-2 text-center md:text-left">
             <p>Authorized Dealer for TM TECHNOLOGY SERVICES SDN. BHD | Independent Sales & Consultation</p>
-            <p>THE KSY ENTERPRISE 202203059028 (NS0266890-A)</p>
-            <p>REGISTERED ADDRESS: NO. 22A, JALAN 2/125, DESA PETALING, 57100 KUALA LUMPUR, WILAYAH PERSEKUTUAN</p> 
             <p>© 2026 | All Rights Reserved | All trademarks are the property of their respective owner.</p>
           </div>
         </div>
