@@ -58,11 +58,11 @@ export default function ApplicationForm({ initialType }: ApplicationFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
-  const homePackages = ["Unifi Winback Special Promo Plan", "Unifi Home Plan"];
+  const homePackages = [/*"Unifi Winback Special Promo Plan",*/ "Unifi Home Plan"];
   const businessPackages = ["Unifi Business Broadband", "Unifi Air Biz", "Fixed IP"];
 
   const plansByPackage: Record<string, string[]> = {
-    "Unifi Winback Special Promo Plan": ["100Mbps", "300Mbps", "500Mbps", "1Gbps"],
+    // "Unifi Winback Special Promo Plan": ["100Mbps", "300Mbps", "500Mbps", "1Gbps"],
     "Unifi Home Plan": ["100Mbps", "300Mbps", "500Mbps", "1Gbps", "2Gbps"],
     "Unifi Business Broadband": ["100Mbps", "300Mbps", "500Mbps", "1Gbps"],
     "Unifi Air Biz": ["Unifi Air Biz 5G 99", "Unifi Air Biz 5G 149"],

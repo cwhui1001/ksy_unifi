@@ -12,6 +12,7 @@ export default function HomePage() {
     0: true, 1: true, 2: true, 3: true, 4: true
   });
 
+/*
   const [expandedWinback, setExpandedWinback] = useState<Record<number, boolean>>({
     0: true, 1: true, 2: true, 3: true
   });
@@ -19,6 +20,7 @@ export default function HomePage() {
   const toggleWinback = (index: number) => {
     setExpandedWinback(prev => ({ ...prev, [index]: !prev[index] }));
   };
+*/
 
   const togglePlan = (index: number) => {
     setExpandedPlans(prev => ({ ...prev, [index]: !prev[index] }));
@@ -66,6 +68,7 @@ export default function HomePage() {
     }
   };
 
+/*
 const winbackPlans = [
     {
       speedNum: "100", speedUnit: "Mbps",
@@ -145,6 +148,7 @@ const winbackPlans = [
       contract: ""
     }
   ];
+*/
 
 
   const plans = [
@@ -299,7 +303,7 @@ const winbackPlans = [
       {/* Plans Section */}
       <section className="py-8 bg-gray-50 relative">
         <div className="max-w-[1350px] mx-auto relative px-2 sm:px-6 lg:px-8">
-          {/* WINBACK SPECIAL PROMO SECTION */}
+          {/* WINBACK SPECIAL PROMO SECTION 
           <div id="winback-section" className="mb-10 px-4 sm:px-0 scroll-mt-24">
             <div className="text-center mb-10">
               <h2 className="text-3xl md:text-[2.5rem] font-black tracking-tight leading-none uppercase">
@@ -316,7 +320,6 @@ const winbackPlans = [
                     wp.bestValue ? 'z-20' : 'hover:z-10'
                   }`}
                 >
-                  {/* Header Spacer for Top Alignment */}
                   <div className="w-full shrink-0 relative z-0 flex flex-col justify-end" style={{ height: '42px' }}>
                     {wp.bestValue && (
                       <div className="bg-[#FF7A00] text-white text-center py-[10px] font-black text-[13px] tracking-widest uppercase w-full rounded-t-[1.25rem] border-t-[3px] border-x-[3px] border-[#FF7A00] relative overflow-hidden h-full">
@@ -326,14 +329,12 @@ const winbackPlans = [
                     )}
                   </div>
                   
-                  {/* Main White Body */}
                   <div className={`relative flex flex-col bg-white overflow-hidden w-full h-auto transition-all duration-500 ${
                     wp.bestValue 
                       ? 'rounded-b-[1.25rem] border-b-[3px] border-x-[3px] border-[#FF7A00] shadow-[0_15px_40px_rgba(0,0,0,0.12)] hover:shadow-[0_30px_60px_rgba(255,122,0,0.2)]' 
                       : 'rounded-[1.25rem] border border-gray-100 shadow-[0_8px_25px_rgba(0,0,0,0.06)] hover:shadow-[0_25px_50px_rgba(0,0,0,0.1)]'
                   }`}>
                     
-                    {/* Top Badges */}
                     <div className="flex justify-between items-start w-full">
                       <div className={`bg-orange-50 text-orange-600 text-[11px] font-bold px-4 py-[6px] rounded-br-[1rem] ${wp.bestValue ? '' : 'rounded-tl-[1.25rem]'}`}>
                         Unifi Home
@@ -344,7 +345,6 @@ const winbackPlans = [
                     </div>
 
                     <div className="p-6 flex-1 flex flex-col">
-                      {/* Header/Speed */}
                       <div 
                         className="flex justify-between items-center mt-2 mb-2 cursor-pointer group"
                         onClick={() => {
@@ -363,7 +363,6 @@ const winbackPlans = [
                       </p>
                       
                       <div className={`transition-all duration-300 overflow-hidden ${expandedWinback[index] ? 'max-h-[800px] opacity-100' : 'max-h-0 opacity-0'}`}>
-                        {/* What's Included */}
                         <div className="mb-6 mt-0 flex flex-col gap-[12px] bg-[#F9F9F9] p-4 rounded-[1rem]">
                           <div className="text-[14px] font-extrabold text-black mb-[4px]">What's included</div>
                           {wp.features.map((feature, idx) => (
@@ -383,7 +382,6 @@ const winbackPlans = [
                         </div>
                       </div>
 
-                      {/* Promo Box identically styled as Add-ons box */}
                       {wp.deals.length > 0 && (
                         <div className="mb-4 rounded-[0.85rem] border border-gray-200 overflow-hidden shadow-[0_2px_10px_rgba(0,0,0,0.03)] flex flex-col">
                           <div className="bg-gradient-to-r from-[#FF7A00] via-[#9D50E5] to-[#1800E7] text-white text-[16px] font-extrabold px-4 py-2.5">
@@ -411,7 +409,6 @@ const winbackPlans = [
                       
                       <div className="flex-1"></div>
 
-                      {/* Pricing */}
                       <div className="flex flex-col mt-4">
                         <div className="bg-[#FF6A00] text-white font-bold text-[11px] px-3 py-[3px] rounded-full inline-flex self-start mb-3 shadow-sm">
                           Winback Special
@@ -437,7 +434,6 @@ const winbackPlans = [
                         )}
                       </div>
 
-                      {/* CTA Button */}
                       <div className="mt-8 mb-2 w-full flex items-stretch h-[46px] group cursor-pointer pointer-events-auto">
                         <Link 
                           onClick={() => trackButtonClick(`Winback Signup: ${wp.speedNum}${wp.speedUnit}`)}
@@ -463,6 +459,7 @@ const winbackPlans = [
               ))}
             </div>
           </div>
+          */}
         </div>
       </section>
 
